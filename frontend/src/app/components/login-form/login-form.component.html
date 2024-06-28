@@ -1,0 +1,21 @@
+<form [formGroup]="contactForm" (ngSubmit)="$event.preventDefault(); login()">
+    <img class="" src="" alt="" width="72" height="57">
+    <h1 class="">Please sign in</h1>
+
+    <div class="">
+      <input type="text" class="" id="username" placeholder="Username">
+     
+    </div>
+    <div class="">
+      <input type="password" class="" id="password" placeholder="Password">
+     
+    </div>
+
+    <div class="">
+      <input class="" type="checkbox" value="remember" id="remember">
+      <label class="" for="remember">
+        Remember me
+      </label>
+    </div>
+    <button class="" type="submit">Sign in</button>
+  </form>

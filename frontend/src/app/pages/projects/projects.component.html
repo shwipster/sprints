@@ -1,0 +1,10 @@
+<h1>Projects</h1>
+
+<app-new-project></app-new-project>
+
+<app-project-item *ngFor="let project of projectsActive" [project]="project"></app-project-item>
+
+<h1>Deleted</h1>
+
+<app-project-item *ngFor="let project of projectsDeleted" [project]="project"></app-project-item>
+
