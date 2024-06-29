@@ -2,4 +2,6 @@
 
 
 <div (click)="openProject()">{{this.project.name}}</div>
-<button (click)="clicked()">{{ project.deleted ? "RESTORE" : "DELETE"}}</button>
+<button (click)="closeProject()" [ngClass]="" >{{ project.closed ? "OPEN" : "CLOSE"}}</button>
+
+<button *ngIf="project.closed" (click)="deleteProject()" class="button-red">DELETE</button>

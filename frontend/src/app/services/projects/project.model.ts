@@ -1,14 +1,11 @@
 export class ProjectModel {
 
-    id!: number;
-    deleted: boolean = false;
+    id!: string;
+    closed: boolean = false;
 
     constructor(
         public name: string
     ) {
 
     }
-
-
-
 }

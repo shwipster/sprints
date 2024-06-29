@@ -20,7 +20,7 @@ export class NewProjectComponent {
   addProject() {
 
     let project = new ProjectModel(this.projectName);
-    this.projectsService.addProject(project);
+    this.projectsService.save(project);
     this.projectName = '';
   }
 }

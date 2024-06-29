@@ -4,7 +4,6 @@ import { NewProjectComponent } from './new-project/new-project.component';
 import { ProjectModel } from '../../services/projects/project.model';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { ProjectItemComponent } from './project-item/project-item.component';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectsComponent implements OnInit {
 
-  private projects: ProjectModel[] = [];
+  projects: ProjectModel[] = [];
   projectId!: number;
 
   constructor(private projectsService: ProjectsService, private activatedRoute: ActivatedRoute) {
@@ -26,18 +25,19 @@ export class ProjectsComponent implements OnInit {
 
     this.projectId = Number(this.activatedRoute.snapshot.params["id"]);
 
-
-    this.projectsService.fetch().then(items => {
-
-      this.projects = this.projectsService.getProjects();
+    this.projectsService.fetch().then(() => {
+      this.projects = this.projectsService.get();
     });
   }
 
   get projectsActive(): ProjectModel[] {
-    return this.projects.filter(item => item.deleted == false);
+
+    let projects = this.projects.filter(item => item.closed == false);
+    return structuredClone(projects);
   }
 
   get projectsDeleted(): ProjectModel[] {
-    return this.projects.filter(item => item.deleted == true);
+    let projects = this.projects.filter(item => item.closed == true);
+    return structuredClone(projects);
   }
 }
