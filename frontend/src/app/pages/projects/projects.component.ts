@@ -15,15 +15,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectsComponent implements OnInit {
 
-  projects: ProjectModel[] = [];
-  projectId!: number;
+  private projects: ProjectModel[] = [];
+  projectId!: string;
 
   constructor(private projectsService: ProjectsService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-
-    this.projectId = Number(this.activatedRoute.snapshot.params["id"]);
 
     this.projectsService.fetch().then(() => {
       this.projects = this.projectsService.get();
@@ -33,11 +31,11 @@ export class ProjectsComponent implements OnInit {
   get projectsActive(): ProjectModel[] {
 
     let projects = this.projects.filter(item => item.closed == false);
-    return structuredClone(projects);
+    return (projects);
   }
 
   get projectsDeleted(): ProjectModel[] {
     let projects = this.projects.filter(item => item.closed == true);
-    return structuredClone(projects);
+    return (projects);
   }
 }

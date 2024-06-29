@@ -20,8 +20,7 @@ export class ProjectItemComponent {
   }
 
   openProject() {
-    let url = '/projects/' + this.project.id;
-    this.router.navigate([url]);
+    this.router.navigate(["sprints", this.project.id]);
   }
 
   closeProject() {

@@ -1,11 +1,11 @@
 import { ApiInterface } from "../api.interface";
 
-export class ProjectModel implements ApiInterface {
+export class SprintModel implements ApiInterface {
 
     id!: string;
-    closed: boolean = false;
 
     constructor(
+        public id_project: string,
         public name: string
     ) {
 

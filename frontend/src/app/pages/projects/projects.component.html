@@ -1,4 +1,4 @@
-<h1>Projects</h1>
+<h1>Projects {{projectId}}</h1>
 
 <app-new-project></app-new-project>
 
@@ -8,7 +8,8 @@
 
 <app-project-item *ngFor="let project of projectsDeleted" [project]="project"></app-project-item>
 
+<!--
 <h1>All</h1>
-
 <app-project-item *ngFor="let project of projects" [project]="project"></app-project-item>
+-->
 

@@ -1,0 +1,8 @@
+<p>sprints works!</p>
+
+<select id="cars">
+    <option *ngFor="let sprint of sprints2" value="{{sprint.id}}">{{sprint.name}}</option>
+</select>
+
+<app-sprint-item *ngFor="let sprint of sprints" [sprint]="sprint"></app-sprint-item>
+
