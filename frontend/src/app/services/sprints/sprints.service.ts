@@ -7,5 +7,10 @@ import { SprintModel } from './sprint.model';
 })
 export class SprintsService extends ApiService<SprintModel> {
 
-  protected override ENDPOINT = "sprints";
+  public override ENDPOINT = "sprints";
+
+  constructor() {
+    super();
+    this.fetch();
+  }
 }

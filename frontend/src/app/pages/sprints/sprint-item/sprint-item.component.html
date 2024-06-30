@@ -1,4 +1,29 @@
-<h1>{{sprint.name}}</h1>
-<h1>{{name}}</h1>
-<button (click)="deleteSprint()" class="button-red">DELETE</button>
-<button (click)="saveSprint()" class="button-red">SAVE</button>
+
+<div class="container">
+    <div class="sprint">
+        <div class="name">{{sprint.name}}</div>
+        <button (click)="deleteSprint()" class="button-red">DELETE</button>
+        <button (click)="addTask()" class="button-red">ADD</button>
+    </div>
+
+    <div class="tasks">
+        <!--<div class="header">
+            <div class="order">#</div>
+            <div class="name">Name</div>
+            <div class="status">Status</div>
+            <div class="edit">EDIT</div>
+            <div class="remove">REMOVE</div>
+        </div>-->
+
+        <div *ngFor="let task of tasks;  index as i" class="task">
+            <div class="order">{{i + 1}}</div>
+            <div class="name">{{task.name}}</div>
+            <button  (click)="deleteTask(task.id)" class="remove">DELETE</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+

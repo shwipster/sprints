@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { FormsModule } from '@angular/forms';
 import { ProjectModel } from '../../../services/projects/project.model';

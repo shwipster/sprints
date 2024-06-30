@@ -6,7 +6,7 @@ import { SprintsComponent } from './pages/sprints/sprints.component';
 export const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "projects", component: ProjectsComponent },
-    { path: "sprints/:id", component: SprintsComponent },
+    { path: "sprints/:projectId", component: SprintsComponent },
     { path: "", component: LoginComponent },
     { path: "**", component: LoginComponent },
 ];

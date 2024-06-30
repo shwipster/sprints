@@ -7,5 +7,10 @@ import { ProjectModel } from './project.model';
 })
 export class ProjectsService extends ApiService<ProjectModel> {
 
-  protected override ENDPOINT = "projects";
+  public override ENDPOINT = "projects";
+
+  constructor() {
+    super();
+    this.fetch();
+  }
 }

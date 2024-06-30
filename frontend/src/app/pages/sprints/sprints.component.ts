@@ -5,20 +5,21 @@ import { SprintsService } from '../../services/sprints/sprints.service';
 import { SprintModel } from '../../services/sprints/sprint.model';
 import { NgFor } from '@angular/common';
 import { SprintItemComponent } from './sprint-item/sprint-item.component';
+import { SprintNewComponent } from './sprint-new/sprint-new.component';
+import { ProjectModel } from '../../services/projects/project.model';
 
 @Component({
   selector: 'app-sprints',
   standalone: true,
-  imports: [NgFor, SprintItemComponent],
+  imports: [NgFor, SprintItemComponent, SprintNewComponent],
   templateUrl: './sprints.component.html',
   styleUrl: './sprints.component.css'
 })
 export class SprintsComponent implements OnInit {
 
-  @Input() id!: string;
+  @Input() projectId!: string;
 
-  public sprints: SprintModel[] = [];
-  public sprints2: SprintModel[] = [];
+  //project!: ProjectModel;
 
   constructor(
     private projectsService: ProjectsService,
@@ -27,21 +28,16 @@ export class SprintsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    console.log("init");
-    //this.projectId = this.activatedRoute.snapshot.params["id"];
-    console.log(this.id);
-
-    this.sprintsService.changed(this.changed.bind(this)).fetch();
+    //this.sprintsService.fetch();
   }
 
-  changed() {
-    console.log("changed");
-    this.sprints = this.sprintsService.get(this.id);
-    this.sprints2 = this.sprintsService.get(this.id);
+  public getProjectName(): string {
+    let model = this.projectsService.getModel(this.projectId);
+    return model ? model.name : "";
   }
 
-  ngOnDestroy() {
+  public filteredSprints() {
 
+    return this.sprintsService.get().filter((item: SprintModel) => item.id_project == this.projectId);
   }
 }

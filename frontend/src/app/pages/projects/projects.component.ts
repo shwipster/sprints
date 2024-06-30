@@ -15,27 +15,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectsComponent implements OnInit {
 
-  private projects: ProjectModel[] = [];
-  projectId!: string;
-
   constructor(private projectsService: ProjectsService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-
-    this.projectsService.fetch().then(() => {
-      this.projects = this.projectsService.get();
-    });
+    //this.projectsService.fetch();
   }
 
   get projectsActive(): ProjectModel[] {
-
-    let projects = this.projects.filter(item => item.closed == false);
+    let projects = this.projectsService.get().filter(item => item.closed == false);
     return (projects);
   }
 
   get projectsDeleted(): ProjectModel[] {
-    let projects = this.projects.filter(item => item.closed == true);
+    let projects = this.projectsService.get().filter(item => item.closed == true);
     return (projects);
   }
 }

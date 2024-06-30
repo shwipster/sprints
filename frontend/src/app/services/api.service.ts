@@ -8,42 +8,23 @@ import { Subject } from 'rxjs';
 })
 export class ApiService<T extends ApiInterface> {
 
-  protected HOST = "http://localhost:3000";
-  protected ENDPOINT = "";
+  protected HOST = "http://192.168.1.8:3000";
+  public ENDPOINT = "l";
 
   models: T[] = [];
-  events: { [key: string]: { timer: number | undefined, callbacks: any } };
   //indexedModels: { [key: string]: ProjectModel } = {};
 
-  constructor(private http: HttpClient) {
-    this.events = {
-      changed: { timer: undefined, callbacks: [] }
-    }
+  constructor() {
   }
 
-  public get(id?: string): T[] {
-    return structuredClone(this.models);
+  public get(): T[] {
+    return this.models;
+    //return structuredClone(this.models);
   }
 
-  public changed(callback: any): this {
-    this.events['changed'].callbacks.push(callback);
-    console.log(this.events);
-    return this;
-  }
-
-  public emit(eventName: string) {
-    console.log("emit");
-
-    let event = this.events[eventName];
-
-    if (event.timer) {
-      clearTimeout(event.timer);
-    }
-    setTimeout(() => {
-      for (var i in event.callbacks) {
-        event.callbacks[i]();
-      }
-    }, 100);
+  public getModel(id: string): T | undefined {
+    let model = this.models.filter((item: ApiInterface) => item.id == id);
+    return model.length ? model[0] : undefined;
   }
 
   public async fetch(): Promise<T[] | undefined> {
@@ -63,9 +44,6 @@ export class ApiService<T extends ApiInterface> {
       for (var i in _models) {
         this.add(_models[i]);
       }
-
-
-
       return this.get();
 
     } catch (error: any) {
@@ -178,5 +156,27 @@ export class ApiService<T extends ApiInterface> {
     }
 
     return new Request(url, options);
+  }
+
+
+  events: { [key: string]: { timer: number | undefined, callbacks: any } } = { changed: { timer: undefined, callbacks: [] } };
+
+  public changed(callback: any): this {
+    //this.events['changed'].callbacks.push(callback);
+    return this;
+  }
+
+  public emit(eventName: string) {
+
+    /*let event = this.events[eventName];
+
+    if (event.timer) {
+      clearTimeout(event.timer);
+    }
+    setTimeout(() => {
+      for (var i in event.callbacks) {
+        event.callbacks[i]();
+      }
+    }, 100);*/
   }
 }

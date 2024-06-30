@@ -1,8 +1,4 @@
-<p>sprints works!</p>
+<app-sprint-new [projectId]="projectId" [label]="getProjectName()"></app-sprint-new>
 
-<select id="cars">
-    <option *ngFor="let sprint of sprints2" value="{{sprint.id}}">{{sprint.name}}</option>
-</select>
-
-<app-sprint-item *ngFor="let sprint of sprints" [sprint]="sprint"></app-sprint-item>
+<app-sprint-item *ngFor="let sprint of filteredSprints()" [sprint]="sprint"></app-sprint-item>
 

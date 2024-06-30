@@ -1,0 +1,4 @@
+
+<div>{{label}}</div>
+<input type="text" placeholder="Sprint name" [(ngModel)]="sprintName">
+<button (click)="addSprint()" [disabled]="this.sprintName == ''">Add</button>

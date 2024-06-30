@@ -1,0 +1,48 @@
+:host {}
+
+.container {
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.sprint {
+    padding: 10px;
+    display: flex;
+
+    .name {
+        flex: 1;
+        font-weight: bold;
+    }
+}
+
+.tasks {
+    .header {
+        display: flex;
+
+        padding: 10px;
+        border-top: solid 1px black;
+    }
+
+    .task {
+        display: flex;
+
+        padding: 10px;
+        border-top: solid 1px black;
+    }
+
+    .order {
+        margin-right: 10px;
+    }
+
+    .name {
+        flex: 1;
+    }
+
+    .status,
+    .edit,
+    .remove {
+        width: 80px;
+        text-align: center;
+    }
+}
