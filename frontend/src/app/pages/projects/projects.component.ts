@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from '../../services/projects/projects.service';
+import { ProjectsService } from '../../services/api/projects/projects.service';
 import { NewProjectComponent } from './new-project/new-project.component';
-import { ProjectModel } from '../../services/projects/project.model';
+import { ProjectModel } from '../../services/api/projects/project.model';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { ProjectItemComponent } from './project-item/project-item.component';
 import { ActivatedRoute, Router } from '@angular/router';

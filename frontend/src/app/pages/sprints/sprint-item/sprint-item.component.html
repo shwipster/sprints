@@ -1,9 +1,11 @@
 
 <div class="container">
     <div class="sprint">
-        <div class="name">{{sprint.name}}</div>
-        <button (click)="deleteSprint()" class="button-red">DELETE</button>
-        <button (click)="addTask()" class="button-red">ADD</button>
+        <div class="name">Sprint: {{sprint.name}}</div>
+        <div class="plus-icon" (click)="addTask()"></div>
+        <div class="edit-icon" (click)="editSprint()"></div>
+        <div class="delete-icon" (click)="deleteSprint()"></div>
+        
     </div>
 
     <div class="tasks">
@@ -15,11 +17,22 @@
             <div class="remove">REMOVE</div>
         </div>-->
 
-        <div *ngFor="let task of tasks;  index as i" class="task">
-            <div class="order">{{i + 1}}</div>
-            <div class="name">{{task.name}}</div>
-            <button  (click)="deleteTask(task.id)" class="remove">DELETE</button>
-        </div>
+        <div *ngIf="tasks.length; then taskList else taskEmpty"></div>
+
+        <ng-template #taskEmpty>
+            <div class="task">
+                <div class="name">No tasks added!</div>
+            </div>
+        </ng-template>
+        <ng-template #taskList>
+            <div *ngFor="let task of tasks;  index as i" class="task">
+                <div class="order">{{i + 1}}</div>
+                <div class="name">{{task.name}}</div>
+                <div class="edit-icon" (click)="editTask(task.id)"></div>
+                <div class="delete-icon" (click)="deleteTask(task.id)"></div>
+            </div>
+        </ng-template>
+        
     </div>
 </div>
 

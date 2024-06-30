@@ -1,0 +1,15 @@
+.new-sprint {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .name {
+        font-size: xx-large;
+        margin-right: 10px;
+    }
+
+    .plus-icon {
+        width: 20px;
+        height: 20px;
+    }
+}

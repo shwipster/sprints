@@ -1,4 +1,8 @@
-<app-sprint-new [projectId]="projectId" [label]="getProjectName()"></app-sprint-new>
+<div class="new-sprint">
+    <div class="name">{{getProjectName()}}</div>
+    <div class="plus-icon" (click)="addSprint()"></div>
+</div> 
+
 
 <app-sprint-item *ngFor="let sprint of filteredSprints()" [sprint]="sprint"></app-sprint-item>
 

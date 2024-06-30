@@ -1,7 +1,7 @@
 :host {}
 
 .container {
-    background-color: whitesmoke;
+    box-shadow: 0px 0px 5px -1px gray;
     margin-bottom: 10px;
     border-radius: 5px;
 }
@@ -11,8 +11,8 @@
     display: flex;
 
     .name {
-        flex: 1;
         font-weight: bold;
+        flex: 1;
     }
 }
 
@@ -28,7 +28,10 @@
         display: flex;
 
         padding: 10px;
-        border-top: solid 1px black;
+
+        background-color: #eaeaea;
+        border: 1px solid #c4bbbb;
+        box-shadow: 0px 0px 4px -2px gray;
     }
 
     .order {
@@ -38,11 +41,16 @@
     .name {
         flex: 1;
     }
+}
 
-    .status,
-    .edit,
-    .remove {
-        width: 80px;
-        text-align: center;
-    }
+.plus-icon {
+    margin-left: 10px;
+}
+
+.edit-icon {
+    margin-left: 10px;
+}
+
+.delete-icon {
+    margin-left: 10px;
 }

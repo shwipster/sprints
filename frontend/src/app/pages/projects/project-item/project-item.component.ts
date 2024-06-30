@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ProjectModel } from '../../../services/projects/project.model';
+import { ProjectModel } from '../../../services/api/projects/project.model';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
-import { ProjectsService } from '../../../services/projects/projects.service';
+import { ProjectsService } from '../../../services/api/projects/projects.service';
 
 @Component({
   selector: 'app-project-item',

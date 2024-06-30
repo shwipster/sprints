@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SprintNewComponent } from './sprint-new.component';
+import { NewTaskModalComponent } from './new-task-modal.component';
 
-describe('SprintNewComponent', () => {
-  let component: SprintNewComponent;
-  let fixture: ComponentFixture<SprintNewComponent>;
+describe('NewTaskModalComponent', () => {
+  let component: NewTaskModalComponent;
+  let fixture: ComponentFixture<NewTaskModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SprintNewComponent]
+      imports: [NewTaskModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SprintNewComponent);
+    fixture = TestBed.createComponent(NewTaskModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

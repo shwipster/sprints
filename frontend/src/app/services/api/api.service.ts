@@ -24,7 +24,7 @@ export class ApiService<T extends ApiInterface> {
 
   public getModel(id: string): T | undefined {
     let model = this.models.filter((item: ApiInterface) => item.id == id);
-    return model.length ? model[0] : undefined;
+    return model.length ? structuredClone(model[0]) : undefined;
   }
 
   public async fetch(): Promise<T[] | undefined> {

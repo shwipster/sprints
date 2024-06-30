@@ -1,0 +1,11 @@
+<dialog #myDialog>
+    
+    <div>{{isNew ? "New Sprint" : "Edit Sprint"}}</div>
+
+    <div class="task">
+        <input type="text" placeholder="Sprint name" [formControl]="name">
+    </div> 
+    <button (click)="save()">Save</button>
+    <button (click)="closeModal()">Close dialog</button>
+</dialog>
+  
