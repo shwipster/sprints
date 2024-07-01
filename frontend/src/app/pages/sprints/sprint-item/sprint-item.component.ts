@@ -34,26 +34,25 @@ export class SprintItemComponent {
     return this.tasksService.get().filter((item: TasksModel) => item.id_sprint == this.sprint.id);
   }
 
-  addTask() {
+  public addTask() {
     let model: TasksModel | undefined = new TasksModel(this.sprint.id, "");
     this.eventsService.publish("new-task-modal-open", model);
   }
 
-  editSprint() {
+  public editSprint() {
     this.eventsService.publish("new-sprint-modal-open", this.sprint);
   }
 
-  deleteSprint() {
+  public deleteSprint() {
     this.sprintsService.delete(this.sprint);
   }
 
-
-  editTask(taskId: string) {
+  public editTask(taskId: string) {
     let model = this.tasksService.getModel(taskId);
     this.eventsService.publish("new-task-modal-open", model);
   }
 
-  deleteTask(taskId: string) {
+  public deleteTask(taskId: string) {
     let model = this.tasksService.getModel(taskId);
     if (model) {
       this.tasksService.delete(model);

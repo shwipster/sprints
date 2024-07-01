@@ -4,34 +4,34 @@
     box-shadow: 0px 0px 5px -1px gray;
     margin-bottom: 10px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .sprint {
-    padding: 10px;
     display: flex;
+    margin-bottom: 10px;
+    margin-right: 10px;
 
     .name {
         font-weight: bold;
+
+    }
+
+    .edit-icon {}
+
+    .plus-icon {
         flex: 1;
     }
 }
 
 .tasks {
-    .header {
-        display: flex;
-
-        padding: 10px;
-        border-top: solid 1px black;
-    }
-
     .task {
         display: flex;
-
         padding: 10px;
-
         background-color: #eaeaea;
         border: 1px solid #c4bbbb;
         box-shadow: 0px 0px 4px -2px gray;
+        margin-top: 10px;
     }
 
     .order {
@@ -39,7 +39,17 @@
     }
 
     .name {
+        width: 200px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+    }
+
+    .description {
         flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
     }
 }
 

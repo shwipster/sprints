@@ -7,6 +7,6 @@ export const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "projects", component: ProjectsComponent },
     { path: "sprints/:projectId", component: SprintsComponent },
-    { path: "", component: LoginComponent },
-    { path: "**", component: LoginComponent },
+    { path: "", component: ProjectsComponent },
+    { path: "**", component: ProjectsComponent },
 ];

@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SprintModel } from '../../services/api/sprints/sprint.model';
 import { EventsService } from '../../services/events.service';
+
 import { SprintsService } from '../../services/api/sprints/sprints.service';
+import { SprintModel } from '../../services/api/sprints/sprint.model';
 
 @Component({
   selector: 'app-new-sprint-modal',
@@ -11,7 +12,7 @@ import { SprintsService } from '../../services/api/sprints/sprints.service';
   templateUrl: './new-sprint-modal.component.html',
   styleUrl: './new-sprint-modal.component.css'
 })
-export class NewSprintModalComponent {
+export class NewSprintModalComponent implements AfterViewInit {
   @ViewChild('myDialog') dialog!: ElementRef<HTMLDialogElement>;
 
   name = new FormControl("");
@@ -22,7 +23,7 @@ export class NewSprintModalComponent {
     private eventsService: EventsService,
     private sprintsService: SprintsService,
   ) {
-    eventsService.subscribe(this, "new-sprint-modal-open", this.openModal);
+    this.eventsService.subscribe(this, "new-sprint-modal-open", this.openModal);
   }
   ngAfterViewInit() {
     // ElementRef: { nativeElement: <input> }
@@ -30,7 +31,7 @@ export class NewSprintModalComponent {
 
   public openModal(model: SprintModel) {
 
-    this.isNew = model.name ? false : true;
+    this.isNew = model.id ? false : true;
     this.model = model;
     this.name.setValue(model.name);
     this.dialog.nativeElement.showModal();
@@ -43,6 +44,8 @@ export class NewSprintModalComponent {
   public save() {
     let value = this.name.getRawValue() ?? "";
     this.model.name = value;
-    this.sprintsService.save(this.model).then(() => this.closeModal());
+    this.sprintsService.save(this.model).then(
+      () => this.closeModal()
+    );
   }
 }

@@ -1,11 +1,16 @@
 <dialog #myDialog>
-    
-    <div>{{isNew ? "New Sprint" : "Edit Sprint"}}</div>
+<form action="" onsubmit="return false;">    
+    <div class="header">{{isNew ? "New Sprint" : "Edit Sprint"}}</div>
 
-    <div class="task">
+    <div class="inputs">
         <input type="text" placeholder="Sprint name" [formControl]="name">
     </div> 
-    <button (click)="save()">Save</button>
-    <button (click)="closeModal()">Close dialog</button>
+
+    <div class="actions">
+        <button type="submit" (click)="save()">Save</button>
+        <button (click)="closeModal()">Close dialog</button>
+    </div>
+</form>
+    
 </dialog>
   

@@ -1,11 +1,17 @@
 <dialog #myDialog>
-
-    <div>{{isNew ? "New Task" : "Edit Task"}}</div>
+<form onsubmit="return false;">
+    <div class="header">{{isNew ? "New Task" : "Edit Task"}}</div>
     
-    <div class="task">
+    <div class="inputs">
         <input type="text" placeholder="Task name" [formControl]="name">
+        <textarea [formControl]="description"></textarea>
     </div> 
-    <button (click)="save()">Save</button>
-    <button (click)="closeModal()">Close dialog</button>
+
+    <div class="actions">
+        <button type="submit" (click)="save()">Save</button>
+        <button (click)="closeModal()">Close dialog</button>
+    </div>
+</form>
+    
 </dialog>
   
