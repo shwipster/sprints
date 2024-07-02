@@ -8,7 +8,8 @@ import { Subject } from 'rxjs';
 })
 export class ApiService<T extends ApiInterface> {
 
-  protected HOST = "http://192.168.1.8:3000";
+  protected HOST = "https://sprints.robotroonik.eu/api/v1";
+  //protected HOST = "http://localhost:8000/api/v1";
   public ENDPOINT = "l";
 
   models: T[] = [];
@@ -69,6 +70,7 @@ export class ApiService<T extends ApiInterface> {
       }
 
       let model = (await response.json());
+      console.log(model);
       return this.add(model);
 
     } catch (error: any) {
@@ -100,6 +102,7 @@ export class ApiService<T extends ApiInterface> {
 
   protected add(model: T): T {
 
+    console.log("add", model);
     if (!model.id) {
       throw new Error(`Model id NOT set: ${model}`);
     }

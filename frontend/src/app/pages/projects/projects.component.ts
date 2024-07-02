@@ -23,6 +23,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   get projectsActive(): ProjectModel[] {
+
+    //console.log(this.projectsService.get());
     let projects = this.projectsService.get().filter(item => item.closed == false);
     return (projects);
   }

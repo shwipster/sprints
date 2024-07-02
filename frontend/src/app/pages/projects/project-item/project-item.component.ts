@@ -24,8 +24,9 @@ export class ProjectItemComponent {
   }
 
   closeProject() {
-    this.project.closed = !this.project.closed;
-    this.projectsService.save(this.project);
+    let clone = structuredClone(this.project);
+    clone.closed = !clone.closed;
+    this.projectsService.save(clone);
   }
 
   deleteProject() {
