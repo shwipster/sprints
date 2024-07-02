@@ -1,26 +1,37 @@
+.container {
+    background-color: #fdfdfd;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 7px -1px gray;
+    border-radius: 5px;
+}
+
 .group {
     display: flex;
-    margin-bottom: 10px;
     margin-right: 10px;
+
+    .prefix {
+        margin-right: 5px;
+        font-style: italic;
+    }
 
     .name {
         font-weight: bold;
+        margin-right: 10px;
 
-    }
-
-    .plus-icon {
-        flex: 1;
     }
 }
 
 .tasks {
+    margin-top: 10px;
+
     .task {
         display: flex;
         padding: 10px;
-        background-color: #eaeaea;
-        border: 1px solid #c4bbbb;
-        box-shadow: 0px 0px 4px -2px gray;
-        margin-top: 10px;
+        background-color: white;
+        box-shadow: 0px 0px 6px -2px gray;
+        margin-top: 5px;
+        border-radius: 5px;
     }
 
     .order {

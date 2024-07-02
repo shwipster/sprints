@@ -1,11 +1,16 @@
-<dialog #myDialog>
-<form onsubmit="return false;">
+<dialog #myDialog >
+<form onsubmit="return false;" *ngIf="model">
     <div class="header">{{isNew ? "New Task" : "Edit Task"}}</div>
     
     <div class="inputs">
         <input type="text" placeholder="Task name" [formControl]="name">
+        <select [formControl]="group">
+            <option  *ngFor="let group of groups"  [value]="group.id">{{group.name}}</option>
+        </select>
         <textarea [formControl]="description"></textarea>
     </div> 
+
+    
 
     <div class="actions">
         <button type="submit" (click)="save()">Save</button>

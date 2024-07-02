@@ -4,6 +4,20 @@ body,
 html {
     padding: 0;
     margin: 0;
+    -webkit-appearance: none !important;
+    border-radius: 0;
+}
+
+button,
+select {
+    -webkit-appearance: none !important;
+}
+
+dialog {
+    max-width: 350px;
+    width: 70%;
+    margin-top: 0;
+    top: 100px;
 }
 
 .plus-icon {
@@ -29,4 +43,13 @@ html {
     mask-size: contain;
     width: 20px;
     height: 20px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.btn-red {
+    color: white;
+    background-color: red;
 }

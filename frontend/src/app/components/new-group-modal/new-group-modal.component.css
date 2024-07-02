@@ -11,11 +11,16 @@
 }
 
 .actions {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
 
     button {
         padding: 10px;
         margin-bottom: 10px;
+    }
+
+    .btn-red {
+        margin-top: 10px;
     }
 }

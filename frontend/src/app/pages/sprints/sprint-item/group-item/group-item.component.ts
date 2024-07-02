@@ -5,6 +5,7 @@ import { TasksModel } from '../../../../services/api/tasks/tasks.model';
 import { CommonModule } from '@angular/common';
 import { EventsService } from '../../../../services/events.service';
 import { GroupsService } from '../../../../services/api/groups/groups.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-group-item',
@@ -16,12 +17,19 @@ import { GroupsService } from '../../../../services/api/groups/groups.service';
 export class GroupItemComponent {
   @Input() group!: GroupsModel;
 
+  isHidden = true;
+
   constructor(
     private tasksService: TasksService,
     private eventsService: EventsService,
-    private groupsService: GroupsService,
+    private groupsService: GroupsService
   ) {
 
+  }
+
+  public toggleDisplay() {
+    this.isHidden = !this.isHidden;
+    return false;
   }
 
   get tasks() {
@@ -41,6 +49,7 @@ export class GroupItemComponent {
   public addTask() {
     let model: TasksModel = new TasksModel(this.group.id, "");
     this.eventsService.publish("new-task-modal-open", model);
+    return false;
   }
 
 

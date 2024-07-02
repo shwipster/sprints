@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProjectsService } from '../../services/api/projects/projects.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SprintsService } from '../../services/api/sprints/sprints.service';
 import { SprintModel } from '../../services/api/sprints/sprint.model';
 import { NgFor, NgIf } from '@angular/common';
@@ -11,7 +11,7 @@ import { EventsService } from '../../services/events.service';
 @Component({
   selector: 'app-sprints',
   standalone: true,
-  imports: [NgFor, NgIf, SprintItemComponent, FormsModule],
+  imports: [NgFor, NgIf, SprintItemComponent, FormsModule, RouterLink],
   templateUrl: './sprints.component.html',
   styleUrl: './sprints.component.css'
 })

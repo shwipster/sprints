@@ -42,6 +42,15 @@ export class NewGroupModalComponent implements AfterViewInit {
     this.dialog.nativeElement.close();
   }
 
+  public deleteModal() {
+    let res = confirm("Delete ?");
+    if (res) {
+      this.groupsService.delete(this.model).then(
+        () => this.closeModal()
+      );
+    }
+  }
+
   public save() {
     let value = this.name.getRawValue() ?? "";
     this.model.name = value;

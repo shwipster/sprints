@@ -12,6 +12,11 @@
         margin-bottom: 10px;
     }
 
+    select {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
     textarea {
         padding: 10px;
         margin-bottom: 10px;

@@ -41,6 +41,15 @@ export class NewSprintModalComponent implements AfterViewInit {
     this.dialog.nativeElement.close();
   }
 
+  public deleteModal() {
+    let res = confirm("Delete ?");
+    if (res) {
+      this.sprintsService.delete(this.model).then(
+        () => this.closeModal()
+      );
+    }
+  }
+
   public save() {
     let value = this.name.getRawValue() ?? "";
     this.model.name = value;
