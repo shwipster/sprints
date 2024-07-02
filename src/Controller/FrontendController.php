@@ -42,6 +42,9 @@ class FrontendController extends AbstractController
             if (preg_match('/.*\.(?:css)(?:\?\S+)?$/i', $filename)) {
                 $response->headers->set("Content-Type", "text/css");
             }
+            if (preg_match('/.*\.(?:svg)(?:\?\S+)?$/i', $filename)) {
+                $response->headers->set("Content-Type", "image/svg+xml");
+            }
         } else {
             throw $this->createNotFoundException();
         }
