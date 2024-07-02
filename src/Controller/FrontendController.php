@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 class FrontendController extends AbstractController
 {
     const FRONTEND_INDEX = 'index.html';
-    const FRONTEND_DIR = 'frontend/dist/estwest/browser';
+    const FRONTEND_DIR = 'frontend/dist/frontend/browser';
 
     public function __construct(private Filesystem $filesystem, private LoggerInterface $logger)
     {
