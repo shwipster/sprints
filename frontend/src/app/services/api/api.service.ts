@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiInterface } from './api.interface';
 import { Subject } from 'rxjs';
+import { BaseModel } from './base.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService<T extends ApiInterface> {
+export class ApiService<T extends BaseModel> {
 
   protected HOST = "https://sprints.robotroonik.eu/api/v1";
   //protected HOST = "http://localhost:8000/api/v1";
@@ -24,8 +25,8 @@ export class ApiService<T extends ApiInterface> {
   }
 
   public getModel(id: string): T | undefined {
-    let model = this.models.filter((item: ApiInterface) => item.id == id);
-    return model.length ? structuredClone(model[0]) : undefined;
+    let model: T[] = this.models.filter((item: BaseModel) => item.id == id);
+    return model.length ? model[0].clone() : undefined;
   }
 
   public async fetch(): Promise<T[] | undefined> {
@@ -39,11 +40,11 @@ export class ApiService<T extends ApiInterface> {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      let _models = (await response.json()) ?? [];
+      let modelPropeties: Object[] = (await response.json()) ?? [];
 
       //Important to use add method. It keeps reference to old models so views are updated correctly
-      for (var i in _models) {
-        this.add(_models[i]);
+      for (var i in modelPropeties) {
+        this.add(modelPropeties[i]);
       }
       return this.get();
 
@@ -69,9 +70,9 @@ export class ApiService<T extends ApiInterface> {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      let model = (await response.json());
-      console.log(model);
-      return this.add(model);
+      let modelPropeties: Object = (await response.json()) ?? {};
+      //console.log(model);
+      return this.add(modelPropeties);
 
     } catch (error: any) {
       console.error(error.message);
@@ -99,10 +100,14 @@ export class ApiService<T extends ApiInterface> {
     }
   }
 
+  protected newInstance(properties: Object): T {
+    throw new Error("Must override");
+  }
 
-  protected add(model: T): T {
+  protected add(propeties: Object): T {
 
-    console.log("add", model);
+    let model = this.newInstance(propeties);
+    //console.log("add", model);
     if (!model.id) {
       throw new Error(`Model id NOT set: ${model}`);
     }
@@ -110,7 +115,7 @@ export class ApiService<T extends ApiInterface> {
 
     //Existing model. Update
     if (existingIndex != -1) {
-      this.models[existingIndex] = { ...model };
+      this.models[existingIndex].parse(model);
       model = this.models[existingIndex];
     }
     else {
@@ -134,13 +139,13 @@ export class ApiService<T extends ApiInterface> {
     return model;
   }
 
-  protected createRequest(method: string, model?: any): Request {
+  protected createRequest(method: string, model?: BaseModel): Request {
 
     let fragments = [this.HOST, this.ENDPOINT];
 
     //Append id into url
     //POST method has model but id is not set
-    if (model && ("id" in model)) {
+    if (model && model.id) {
       fragments.push(model.id);
     }
 

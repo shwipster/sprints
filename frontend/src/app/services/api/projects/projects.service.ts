@@ -14,10 +14,10 @@ export class ProjectsService extends ApiService<ProjectModel> {
     this.fetch();
   }
 
-  protected override add(rawValues: ProjectModel): ProjectModel {
+  protected override newInstance(properties: any): ProjectModel {
 
     let model = new ProjectModel();
-    model.parse(rawValues);
-    return super.add(model);
+    model.parse(properties);
+    return model;
   }
 }

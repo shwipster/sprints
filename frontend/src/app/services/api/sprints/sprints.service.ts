@@ -13,4 +13,11 @@ export class SprintsService extends ApiService<SprintModel> {
     super();
     this.fetch();
   }
+
+  protected override newInstance(properties: any): SprintModel {
+
+    let model = new SprintModel(properties.id_project, properties.name);
+    model.parse(properties);
+    return model;
+  }
 }

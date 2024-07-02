@@ -6,11 +6,14 @@ import { NgFor, NgIf } from '@angular/common';
 import { TasksService } from '../../../services/api/tasks/tasks.service';
 import { TasksModel } from '../../../services/api/tasks/tasks.model';
 import { EventsService } from '../../../services/events.service';
+import { GroupsService } from '../../../services/api/groups/groups.service';
+import { GroupsModel } from '../../../services/api/groups/groups.model';
+import { GroupItemComponent } from './group-item/group-item.component';
 
 @Component({
   selector: 'app-sprint-item',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, GroupItemComponent],
   templateUrl: './sprint-item.component.html',
   styleUrl: './sprint-item.component.css'
 })
@@ -21,6 +24,7 @@ export class SprintItemComponent {
     private router: Router,
     private sprintsService: SprintsService,
     private tasksService: TasksService,
+    private groupsService: GroupsService,
     private eventsService: EventsService
   ) {
 
@@ -28,15 +32,16 @@ export class SprintItemComponent {
 
   ngOnInit(): void {
     //this.tasksService.fetch();
+
   }
 
-  get tasks() {
-    return this.tasksService.get().filter((item: TasksModel) => item.id_sprint == this.sprint.id);
+  public groups() {
+    return this.groupsService.get().filter((item: GroupsModel) => item.id_sprint == this.sprint.id);
   }
 
-  public addTask() {
-    let model: TasksModel | undefined = new TasksModel(this.sprint.id, "");
-    this.eventsService.publish("new-task-modal-open", model);
+  public addGroup() {
+    let model: GroupsModel = new GroupsModel(this.sprint.id, "");
+    this.eventsService.publish("new-group-modal-open", model);
   }
 
   public editSprint() {
@@ -45,17 +50,5 @@ export class SprintItemComponent {
 
   public deleteSprint() {
     this.sprintsService.delete(this.sprint);
-  }
-
-  public editTask(taskId: string) {
-    let model = this.tasksService.getModel(taskId);
-    this.eventsService.publish("new-task-modal-open", model);
-  }
-
-  public deleteTask(taskId: string) {
-    let model = this.tasksService.getModel(taskId);
-    if (model) {
-      this.tasksService.delete(model);
-    }
   }
 }

@@ -1,16 +1,15 @@
-import { ApiInterface } from "../api.interface";
+import { BaseModel } from "../base.model";
 
-export class TasksModel implements ApiInterface {
+export class TasksModel extends BaseModel {
 
-    id!: string;
     done: boolean = false;
     order: number | undefined;
     description: string = '';
 
     constructor(
-        public id_sprint: string,
+        public id_group: string,
         public name: string
     ) {
-
+        super();
     }
 }

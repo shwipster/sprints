@@ -1,13 +1,11 @@
-import { ApiInterface } from "../api.interface";
+import { BaseModel } from "../base.model";
 
-export class SprintModel implements ApiInterface {
-
-    id!: string;
+export class SprintModel extends BaseModel {
 
     constructor(
         public id_project: string,
-        public name: string
+        public name: string = ""
     ) {
-
+        super();
     }
 }

@@ -3,36 +3,12 @@
     <div class="sprint">
         <div class="name">Sprint: {{sprint.name}}</div>
         <div class="edit-icon" (click)="editSprint()"></div>
-        <div class="plus-icon" (click)="addTask()"></div>
+        <div class="plus-icon" (click)="addGroup()"></div>
         <div class="delete-icon" (click)="deleteSprint()"></div>
     </div>
 
-    <div class="tasks">
-        <!--<div class="header">
-            <div class="order">#</div>
-            <div class="name">Name</div>
-            <div class="status">Status</div>
-            <div class="edit">EDIT</div>
-            <div class="remove">REMOVE</div>
-        </div>-->
 
-        <div *ngIf="tasks.length; then taskList else taskEmpty"></div>
-
-        <ng-template #taskEmpty>
-            <div class="task">
-                <div class="name">No tasks added!</div>
-            </div>
-        </ng-template>
-        <ng-template #taskList>
-            <div *ngFor="let task of tasks;  index as i" class="task" (click)="editTask(task.id)">
-                <div class="order">{{i + 1}}</div>
-                <div class="name">{{task.name}}</div>
-                <div class="description">{{task.description}}</div>
-                <div class="delete-icon" (click)="deleteTask(task.id); $event.stopPropagation()"></div>
-            </div>
-        </ng-template>
-        
-    </div>
+    <app-group-item  *ngFor="let group of groups()" [group]="group"></app-group-item>
 </div>
 
 

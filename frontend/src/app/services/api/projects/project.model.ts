@@ -1,17 +1,18 @@
-import { ApiInterface } from "../api.interface";
+import { BaseModel } from "../base.model";
 
-export class ProjectModel implements ApiInterface {
-
-    id!: string;
+export class ProjectModel extends BaseModel {
     closed: boolean = false;
 
-    constructor(public name: string = "") {
-
+    constructor(
+        public name: string = ""
+    ) {
+        super();
     }
 
-    public parse(values: any) {
-        this.id = values.id ? values.id : null;
-        this.closed = values.closed;
-        this.name = values.name ? values.name : "";
+    public override parse(properties: any): this {
+        this.id = properties.id ? properties.id : null;
+        this.closed = properties.closed;
+        this.name = properties.name ? properties.name : "";
+        return this;
     }
 }
