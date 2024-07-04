@@ -23,6 +23,12 @@ class FrontendController extends AbstractController
     public function index(string $uri): Response
     {
         $uri = $uri ? $uri : self::FRONTEND_INDEX;
+
+        //If requested uri is not link to actual resource then serve index and let angular resolve routing
+        if (!pathinfo($uri, PATHINFO_EXTENSION)) {
+            $uri = self::FRONTEND_INDEX;
+        }
+
         $rootDir = $this->getParameter('kernel.project_dir');
         $filename = Path::join($rootDir, self::FRONTEND_DIR, $uri);
         //$this->logger->info($filename);
