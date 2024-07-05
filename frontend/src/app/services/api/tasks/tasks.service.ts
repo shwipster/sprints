@@ -14,13 +14,6 @@ export class TasksService extends ApiService<TasksModel> {
     this.fetch();
   }
 
-  protected override newInstance(properties: any): TasksModel {
-
-    let model = new TasksModel(properties.id_group, properties.name);
-    model.parse(properties);
-    return model;
-  }
-
   override async save(model: TasksModel): Promise<TasksModel | undefined> {
 
     let _model = await super.save(model);

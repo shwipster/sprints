@@ -47,7 +47,7 @@ export class NewTaskModalComponent implements AfterViewInit {
     this.groups = [];
 
     for (var i in groupsList) {
-      let sprint = this.sprintsService.getModel(groupsList[i].id_sprint);
+      let sprint = this.sprintsService.get(groupsList[i].id_sprint);
 
       let name = groupsList[i].name;
       if (sprint) {

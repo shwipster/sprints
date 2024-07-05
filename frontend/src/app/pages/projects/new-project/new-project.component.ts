@@ -19,7 +19,8 @@ export class NewProjectComponent {
 
   addProject() {
 
-    let project = new ProjectModel(this.projectName);
+    let project = new ProjectModel();
+    project.name = this.projectName;
     this.projectsService.save(project);
     this.projectName = '';
   }

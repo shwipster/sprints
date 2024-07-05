@@ -55,12 +55,12 @@ export class GroupItemComponent {
 
   //Task-item component
   public editTask(taskId: string) {
-    let model = this.tasksService.getModel(taskId);
+    let model = this.tasksService.get(taskId);
     this.eventsService.publish("new-task-modal-open", model);
   }
 
   public deleteTask(taskId: string) {
-    let model = this.tasksService.getModel(taskId);
+    let model = this.tasksService.get(taskId);
     if (model) {
       this.tasksService.delete(model);
     }

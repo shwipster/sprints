@@ -13,11 +13,4 @@ export class GroupsService extends ApiService<GroupsModel> {
     super();
     this.fetch();
   }
-
-  protected override newInstance(properties: any): GroupsModel {
-
-    let model = new GroupsModel(properties.id_sprint);
-    model.parse(properties);
-    return model;
-  }
 }

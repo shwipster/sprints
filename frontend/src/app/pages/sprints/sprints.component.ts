@@ -35,7 +35,7 @@ export class SprintsComponent implements OnInit {
   }
 
   public getProjectName(): string {
-    let model = this.projectsService.getModel(this.projectId);
+    let model = this.projectsService.get(this.projectId);
     return model ? model.name : "";
   }
 
@@ -48,7 +48,7 @@ export class SprintsComponent implements OnInit {
 
     let model: SprintModel | undefined = new SprintModel(this.projectId, "");
     if (sprintId) {
-      model = this.sprintsService.getModel(sprintId);
+      model = this.sprintsService.get(sprintId);
     }
 
     this.eventsService.publish("new-sprint-modal-open", model);

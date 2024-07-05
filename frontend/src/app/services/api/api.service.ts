@@ -7,26 +7,31 @@ import { BaseModel } from './base.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService<T extends BaseModel> {
+export class ApiService<T> {
 
   protected HOST = "https://sprints.robotroonik.eu/api/v1";
   //protected HOST = "http://localhost:8000/api/v1";
   public ENDPOINT = "l";
 
-  models: T[] = [];
+  models: BaseModel[] = [];
   //indexedModels: { [key: string]: ProjectModel } = {};
 
+  private model: typeof BaseModel = BaseModel;
+
   constructor() {
+    //this.model = model as typeof BaseModel;
   }
 
-  public get(): T[] {
-    return this.models;
-    //return structuredClone(this.models);
-  }
-
-  public getModel(id: string): T | undefined {
-    let model: T[] = this.models.filter((item: BaseModel) => item.id == id);
-    return model.length ? model[0].clone() : undefined;
+  public get(): T[];
+  public get(id: string): T | undefined;
+  public get(id?: string): T[] | T | undefined {
+    if (id) {
+      let models = this.models.filter((item: BaseModel) => item.id == id);
+      return models.length ? models[0].clone() as T : undefined;
+    }
+    else {
+      return this.models as T[];
+    }
   }
 
   public async fetch(): Promise<T[] | undefined> {
@@ -40,13 +45,16 @@ export class ApiService<T extends BaseModel> {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      let modelPropeties: Object[] = (await response.json()) ?? [];
+      let properties: Object[] = (await response.json()) ?? [];
 
       //Important to use add method. It keeps reference to old models so views are updated correctly
-      for (var i in modelPropeties) {
-        this.add(modelPropeties[i]);
+      for (var i in properties) {
+
+        let model = new this.model();
+        model.set(properties[i]);
+        this.add(model);
       }
-      return this.get();
+      return this.get() as T[];
 
     } catch (error: any) {
       console.error(error.message);
@@ -54,7 +62,7 @@ export class ApiService<T extends BaseModel> {
     }
   }
 
-  public async save(model: T): Promise<T | undefined> {
+  public async save(model: BaseModel): Promise<T | undefined> {
 
     let method = "POST";
     if (model.id) {
@@ -70,9 +78,12 @@ export class ApiService<T extends BaseModel> {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      let modelPropeties: Object = (await response.json()) ?? {};
-      //console.log(model);
-      return this.add(modelPropeties);
+      let propeties: Object = (await response.json()) ?? {};
+
+      let model = new this.model();
+      model.set(propeties);
+
+      return this.add(model) as T;
 
     } catch (error: any) {
       console.error(error.message);
@@ -80,7 +91,7 @@ export class ApiService<T extends BaseModel> {
     }
   }
 
-  public async delete(model: T): Promise<T | undefined> {
+  public async delete(model: BaseModel): Promise<T | undefined> {
 
     let request = this.createRequest("DELETE", model);
 
@@ -91,8 +102,12 @@ export class ApiService<T extends BaseModel> {
         throw new Error(`Response status: ${response.status}`);
       }
 
-      let model = (await response.json());
-      return this.remove(model);
+      let propeties = (await response.json());
+
+      let model = new this.model();
+      model.set(propeties);
+
+      return this.remove(model) as T;
 
     } catch (error: any) {
       console.error(error.message);
@@ -100,39 +115,25 @@ export class ApiService<T extends BaseModel> {
     }
   }
 
-  protected newInstance(properties: Object): T {
-    throw new Error("Must override");
-  }
+  protected add(model: BaseModel): BaseModel {
 
-  protected add(propeties: Object): T {
-
-    let model = this.newInstance(propeties);
-    //console.log("add", model);
-    if (!model.id) {
-      throw new Error(`Model id NOT set: ${model}`);
-    }
-    let existingIndex = this.models.findIndex((item: T) => item.id == model.id);
+    let existingIndex = this.models.findIndex((item: BaseModel) => item.id == model.id);
 
     //Existing model. Update
     if (existingIndex != -1) {
-      this.models[existingIndex].parse(model);
-      model = this.models[existingIndex];
+      this.models[existingIndex].set(model);
+      model = this.models[existingIndex]; //Reference model in this.models list not clone passed as argument
     }
     else {
       this.models.push(model);
     }
 
     this.emit("changed");
-
     return model;
   }
 
-  protected remove(model: T): T {
-    if (!model.id) {
-      throw new Error(`Model id NOT set: ${model}`);
-    }
-
-    let existingIndex = this.models.findIndex((item: T) => item.id == model.id);
+  protected remove(model: BaseModel): BaseModel {
+    let existingIndex = this.models.findIndex((item: BaseModel) => item.id == model.id);
     model = this.models.splice(existingIndex, 1)[0];
 
     this.emit("changed");
