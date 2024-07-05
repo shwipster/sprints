@@ -36,8 +36,12 @@ export class GroupItemComponent {
     return this.tasksService.get().filter((item: TasksModel) => item.id_group == this.group.id);
   }
 
+  public getTasksDone() {
+    let items = this.tasks.filter(task => task.done);
+    return items.length;
+  }
+
   public editGroup() {
-    console.log(this.group);
     let clone = this.group.clone();
     this.eventsService.publish("new-group-modal-open", clone);
   }

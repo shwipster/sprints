@@ -23,6 +23,7 @@ export class NewTaskModalComponent implements AfterViewInit {
   name = new FormControl("");
   group = new FormControl("");
   description = new FormControl("");
+  done = new FormControl(false);
   model!: TasksModel;
   isNew: boolean = true;
 
@@ -43,6 +44,7 @@ export class NewTaskModalComponent implements AfterViewInit {
 
   public openModal(model: TasksModel) {
 
+    console.log(model);
     let groupsList = this.groupsService.get();
     this.groups = [];
 
@@ -65,6 +67,7 @@ export class NewTaskModalComponent implements AfterViewInit {
     this.name.setValue(model.name);
     this.group.setValue(model.id_group);
     this.description.setValue(model.description);
+    this.done.setValue(model.done);
     this.dialog.nativeElement.showModal();
   }
 
@@ -82,6 +85,8 @@ export class NewTaskModalComponent implements AfterViewInit {
     }
 
     this.model.description = this.description.getRawValue() ?? "";
+
+    this.model.done = this.done.getRawValue() ?? false;
 
     this.tasksService.save(this.model).then(
       () => this.closeModal()

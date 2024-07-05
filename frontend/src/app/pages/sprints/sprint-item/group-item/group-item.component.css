@@ -1,9 +1,9 @@
 .container {
-    background-color: #fdfdfd;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     box-shadow: 0px 0px 7px -1px gray;
     border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
 .group {
@@ -20,6 +20,15 @@
         margin-right: 10px;
 
     }
+
+    .count {
+        color: #E91E63;
+    }
+
+    .count.done {
+        color: #009688;
+        font-weight: bold;
+    }
 }
 
 .tasks {
@@ -28,10 +37,15 @@
     .task {
         display: flex;
         padding: 10px;
-        background-color: white;
-        box-shadow: 0px 0px 6px -2px gray;
-        margin-top: 5px;
+        margin-top: 7px;
         border-radius: 5px;
+        background-color: #019487;
+        color: white;
+    }
+
+    .task.done {
+        background-color: #ebebeb;
+        color: gray;
     }
 
     .order {

@@ -8,6 +8,11 @@
             <option  *ngFor="let group of groups"  [value]="group.id">{{group.name}}</option>
         </select>
         <textarea [formControl]="description"></textarea>
+        <div class="done">
+            <input id="done" type="checkbox" [formControl]="done">
+            <label for="done">Done</label>
+        </div>
+       
     </div> 
 
     

@@ -4,7 +4,7 @@
         <div class="prefix">Group:</div>
         <div class="name">{{group.name}}</div>
 
-        <div class="count">({{tasks.length}})</div>
+        <div class="count" [class]="getTasksDone() == tasks.length ? 'done':''">( {{ getTasksDone() }} / {{tasks.length}}  )</div>
 
         <div class="edit-icon" (click)="editGroup(); $event.stopPropagation()"></div>
         <div class="plus-icon" (click)="addTask(); $event.stopPropagation()"></div>
@@ -18,7 +18,7 @@
             </div>
         </ng-template>
         <ng-template #taskList>
-            <div *ngFor="let task of tasks;  index as i" class="task" (click)="editTask(task.id)">
+            <div *ngFor="let task of tasks;  index as i" class="task" [class]="task.done ? 'done': ''" (click)="editTask(task.id)">
                 <div class="order">{{i + 1}}</div>
                 <div class="name">{{task.name}}</div>
                 <div class="description">{{task.description}}</div>

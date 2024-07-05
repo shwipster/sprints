@@ -22,6 +22,11 @@
         margin-bottom: 10px;
         height: 100px;
     }
+
+    .done {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
 }
 
 .actions {

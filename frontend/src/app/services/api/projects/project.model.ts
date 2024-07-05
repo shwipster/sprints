@@ -9,6 +9,7 @@ import { ProjectsService } from "./projects.service";
 export class ProjectModel extends BaseModel {
     closed: boolean = false;
     name: string = "";
+    done: boolean = false;
 
     constructor() {
         super();
