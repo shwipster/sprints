@@ -1,4 +1,10 @@
+import { Injectable } from "@angular/core";
 import { BaseModel } from "../base.model";
+
+@Injectable({
+    providedIn: 'root',
+    useValue: TasksModel
+})
 
 export class TasksModel extends BaseModel {
 

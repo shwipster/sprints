@@ -9,8 +9,8 @@ export class SprintsService extends ApiService<SprintModel> {
 
   public override ENDPOINT = "sprints";
 
-  constructor() {
-    super();
+  constructor(model: SprintModel) {
+    super(model);
     this.fetch();
   }
 }

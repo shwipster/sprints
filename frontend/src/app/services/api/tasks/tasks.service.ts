@@ -9,8 +9,8 @@ export class TasksService extends ApiService<TasksModel> {
 
   public override ENDPOINT = "tasks";
 
-  constructor() {
-    super();
+  constructor(model: TasksModel) {
+    super(model);
     this.fetch();
   }
 

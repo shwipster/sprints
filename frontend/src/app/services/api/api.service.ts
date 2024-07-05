@@ -16,10 +16,11 @@ export class ApiService<T> {
   models: BaseModel[] = [];
   //indexedModels: { [key: string]: ProjectModel } = {};
 
-  private model: typeof BaseModel = BaseModel;
+  private model: typeof BaseModel;
 
-  constructor() {
-    //this.model = model as typeof BaseModel;
+  constructor(model: BaseModel) {
+
+    this.model = (model as unknown) as typeof BaseModel;
   }
 
   public get(): T[];
@@ -50,7 +51,7 @@ export class ApiService<T> {
       //Important to use add method. It keeps reference to old models so views are updated correctly
       for (var i in properties) {
 
-        let model = new this.model();
+        let model = new this.model(); // Constructor arguments are not required in compiled JS !!!
         model.set(properties[i]);
         this.add(model);
       }
@@ -178,7 +179,7 @@ export class ApiService<T> {
   public emit(eventName: string) {
 
     /*let event = this.events[eventName];
-
+  
     if (event.timer) {
       clearTimeout(event.timer);
     }

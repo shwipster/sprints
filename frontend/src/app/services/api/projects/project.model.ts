@@ -1,6 +1,11 @@
+import { Injectable } from "@angular/core";
 import { BaseModel } from "../base.model";
 import { ProjectsService } from "./projects.service";
 
+@Injectable({
+    providedIn: 'root',
+    useValue: ProjectModel
+})
 export class ProjectModel extends BaseModel {
     closed: boolean = false;
     name: string = "";

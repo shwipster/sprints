@@ -10,8 +10,8 @@ export class ProjectsService extends ApiService<ProjectModel> {
   public override ENDPOINT = "projects";
 
 
-  constructor() {
-    super();
+  constructor(model: ProjectModel) {
+    super(model);
     this.fetch();
   }
 }

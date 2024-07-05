@@ -9,8 +9,8 @@ export class GroupsService extends ApiService<GroupsModel> {
 
   public override ENDPOINT = "groups";
 
-  constructor() {
-    super();
+  constructor(model: GroupsModel) {
+    super(model);
     this.fetch();
   }
 }
