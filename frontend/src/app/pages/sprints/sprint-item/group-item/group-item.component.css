@@ -21,9 +21,7 @@
 
     }
 
-    .count {
-        color: #E91E63;
-    }
+    .count {}
 
     .count.done {
         color: #009688;
@@ -39,13 +37,14 @@
         padding: 10px;
         margin-top: 7px;
         border-radius: 5px;
-        background-color: #019487;
-        color: white;
+        background-color: #ebebeb;
+
     }
 
     .task.done {
-        background-color: #ebebeb;
-        color: gray;
+
+        background-color: #019487;
+        color: white;
     }
 
     .order {
