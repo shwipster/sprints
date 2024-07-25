@@ -9,8 +9,8 @@ import { BaseModel } from './base.model';
 })
 export class ApiService<T> {
 
-  protected HOST = "https://sprints.robotroonik.eu/api/v1";
-  //protected HOST = "http://localhost:8000/api/v1";
+  //protected HOST = "https://sprints.robotroonik.eu/api/v1";
+  protected HOST = "http://localhost:8000/api/v1";
   public ENDPOINT = "l";
 
   models: BaseModel[] = [];

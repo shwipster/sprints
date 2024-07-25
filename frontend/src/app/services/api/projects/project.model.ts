@@ -16,9 +16,10 @@ export class ProjectModel extends BaseModel {
     }
 
     public override set(properties: any): this {
-        this.id = properties.id ? properties.id : null;
-        this.closed = properties.closed;
-        this.name = properties.name ? properties.name : "";
-        return this;
+        //this.id = properties.id ? properties.id : null;
+        //this.closed = properties.closed ? properties.closed : this.closed;
+        //this.name = properties.name ? properties.name : "";
+
+        return super.set(properties);
     }
 }
